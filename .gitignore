@@ -1,0 +1,10 @@
+finance-app-frontend/.DS_Store
+finance-app-frontend/node_modules
+finance-app-frontend/build
+finance-app-frontend/.svelte-kit
+finance-app-frontend/package
+finance-app-frontend/.env
+finance-app-frontend/.env.*
+finance-app-frontend/!.env.example
+finance-app-frontend/vite.config.js.timestamp-*
+finance-app-frontend/vite.config.ts.timestamp-*

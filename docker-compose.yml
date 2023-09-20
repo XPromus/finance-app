@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  backend:
+    container_name: finance-backend
+    build: 
+      context: ./docker/backend
+      dockerfile: dockerfile
+    ports: 
+      - "8089:8080"
