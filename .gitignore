@@ -8,3 +8,4 @@ finance-app-frontend/.env.*
 finance-app-frontend/!.env.example
 finance-app-frontend/vite.config.js.timestamp-*
 finance-app-frontend/vite.config.ts.timestamp-*
+finance-app-frontend/package-lock.json
