@@ -14,8 +14,7 @@
 
 </script>
 
-<div class="w-full h-full flex flex-row space-x-1">
-    <span>{transaction.title}</span>
-    <span>{transaction.vendor}</span>
-    <span>{getCurrencyString(transaction.amount)}</span>
-</div>
+<span>{transaction.title}</span>
+<span>{transaction.vendor}</span>
+<span>{transaction.description}</span>
+<span>{getCurrencyString(transaction.amount)}</span>

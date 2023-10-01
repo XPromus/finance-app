@@ -17,10 +17,10 @@ export interface Transaction {
     readonly description: string,
 };
 
-export const getAllTransactions = async (): Promise<Transaction[]> => {
+export const getAllTransactions = async (sort: string): Promise<Transaction[]> => {
     const pb = new PocketBase("http://localhost:8089");
     const data: Transaction[] = await pb.collection("transaction").getFullList({
-        sort: "-created",
+        sort: sort,
     });
     return data;
 }
