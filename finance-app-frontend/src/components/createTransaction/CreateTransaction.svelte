@@ -11,14 +11,10 @@
     export let reloadPage = () => {};
     export let closeWindow = () => {};
 
+    let addition: boolean = false;
+    let subtraction: boolean = true;
+
     const createNewTransaction = async () => {
-        const getFactor = (): number => {
-            if (amount < 0) {
-                return -1;
-            } else {
-                return 1;
-            }
-        }
         const data = {
             "title": name,
             "amount": amount,
@@ -56,6 +52,17 @@
         }
     }
 
+    const changeType = () => {
+        addition = !addition;
+        subtraction = !subtraction;
+    }
+
+    const getFactor = (): number => {
+        if (addition) return 1;
+        if (subtraction) return -1;
+        return 1;
+    }
+
 </script>
 
 <div class="bg-black/50 z-50  absolute top-0 left-0 h-screen w-screen flex items-center justify-center">
@@ -70,6 +77,16 @@
                 </div>
             </div>
             <div class="w-full h-full flex flex-col space-y-1 px-1">
+                <div class="w-full flex flex-row text-center p-1">
+                    <div class="basis-1/2">
+                        Abbuchung
+                        <input on:change={changeType} bind:checked={subtraction} class="ml-2" type="checkbox" name="" id="">
+                    </div>
+                    <div class="basis-1/2">
+                        Zubuchung
+                        <input on:change={changeType} bind:checked={addition} class="ml-2" type="checkbox" name="" id="">
+                    </div>
+                </div>
                 <input bind:value={name} class="w-full {getBorderColorString(name)} p-1" type="text" name="" id="" placeholder="Transaction Name *">
                 <input bind:value={vendor} class="w-full {getBorderColorString(vendor)} p-1" type="text" name="" id="" placeholder="Vendor *">
                 <input bind:value={amount} class="w-full {getBorderColorNumber(amount)} p-1" type="number" name="" id="" placeholder="Amount">

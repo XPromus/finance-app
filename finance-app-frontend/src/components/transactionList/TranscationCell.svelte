@@ -2,6 +2,6 @@
     export let text: string = "";
 </script>
 
-<span>
+<span class="">
     {text}
 </span>

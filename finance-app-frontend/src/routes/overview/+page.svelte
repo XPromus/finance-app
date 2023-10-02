@@ -3,27 +3,29 @@
     import TransactionList from "../../components/transactionList/TransactionList.svelte";
     import { invalidateAll } from "$app/navigation";
     import type { PageData } from "./$types";
+    import { getCurrencyString } from "../../middleware/transactionMiddleware";
+    import ToolBarButton from "../../components/toolBar/ToolBarButton.svelte";
+    import ToolBar from "../../components/toolBar/ToolBar.svelte";
     export let data: PageData;
 
     let showCreateTransactionWindow: boolean = false;
 
+    const getFactor = () => {
+
+    }
+
 </script>
 
 <div class="">
-    <div class="w-full flex flex-row space-x-1">
-        <button on:click={invalidateAll}>
-            Reload
-        </button>
-        <button on:click={() => {showCreateTransactionWindow = true}} class="p-1">
-            Create
-        </button>
-        <button class="p-1">
-            Edit
-        </button>
-    </div>
-    Overview
+    <ToolBar>
+        <ToolBarButton func={invalidateAll} text="Reload"/>
+        <ToolBarButton func={() => {showCreateTransactionWindow = true}} text="Create"/>
+        <ToolBarButton func={() => {console.log("Edit")}} text="Edit"/>
+        <ToolBarButton func={() => {window.open("http://localhost:8089/_/")}} text="Admin Backend"/>
+    </ToolBar>
+    Overview {getCurrencyString(data.totalAmount)}
     {#if showCreateTransactionWindow}
         <CreateTransaction reloadPage={invalidateAll} closeWindow={() => {showCreateTransactionWindow = false}} />
     {/if}
-    <TransactionList transactions={data.transactionData} />
+    <TransactionList transactions={data.transactionData} reloadPage={invalidateAll} />
 </div>
