@@ -17,6 +17,11 @@ export interface Transaction {
     readonly description: string,
 };
 
+export interface MinMaxTransaction {
+    readonly min: number,
+    readonly max: number,
+}
+
 export const getAllTransactions = async (sort: string = "-date"): Promise<Transaction[]> => {
     const pb = new PocketBase("http://localhost:8089");
     const data: Transaction[] = await pb.collection("transaction").getFullList({
@@ -42,4 +47,14 @@ export const getTotalAmount = async (): Promise<number> => {
 export const deleteTransaction = async (id: string) => {
     const pb = new PocketBase("http://localhost:8089");
     await pb.collection("transaction").delete(id); 
+}
+
+export const getMinMaxTransaction = async (): Promise<MinMaxTransaction> => {
+    const transactions = await getAllTransactions();
+    const minTransaction = Math.min.apply(null, transactions.map((t) => t.amount * t.factor));
+    const maxTransaction = Math.max.apply(null, transactions.map((t) => t.amount * t.factor));
+    return {
+        min: minTransaction,
+        max: maxTransaction,
+    };
 }

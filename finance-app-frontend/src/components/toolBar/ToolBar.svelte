@@ -2,6 +2,6 @@
     
 </script>
 
-<div class="w-full flex flex-row space-x-1 px-2 py-1">
+<div class="w-full flex flex-col space-y-1 px-2 bg-slate-600 py-1">
     <slot />
 </div>
